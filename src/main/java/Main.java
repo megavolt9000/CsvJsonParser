@@ -10,7 +10,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -45,20 +44,6 @@ public class Main {
             e.printStackTrace();
         }
         return list;
-    }
-
-    //Собираем строку
-    private static String readString(String filename) {
-        StringBuilder sb = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
-            String s;
-            while ((s = br.readLine()) != null) {
-                sb.append(s).append("\n");
-            }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return sb.toString();
     }
 
     //Запись json
