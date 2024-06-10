@@ -46,7 +46,7 @@ public class Employee {
         this.lastName = lastName;
         this.country = country;
         this.age = age;
-    }   
+    }
 }
 ``` 
 
@@ -77,7 +77,7 @@ public class Employee {
 предназначении колонок в CVS файле:
 
 ```java
-String[] columnMapping = {"id", "firstName", "lastName", "country", "age"};
+String[]columnMapping={"id","firstName","lastName","country","age"};
 ```
 
 Далее определите имя для считываемого CSV файла:
@@ -89,7 +89,7 @@ String fileName="data.csv";
 Далее получите список сотрудников, вызвав метод `parseCSV()`:
 
 ```java
-List<Employee> list = parseCSV(columnMapping, fileName);
+List<Employee> list=parseCSV(columnMapping,fileName);
 ```
 
 Метод `parseCSV()` вам необходимо реализовать самостоятельно. В этом вам поможет экземпляр класса `CSVReader`. Передайте
@@ -104,21 +104,21 @@ List<Employee> list = parseCSV(columnMapping, fileName);
 же предстоит реализовать самостоятельно.
 
 ```java
-String json = listToJson(list);
+String json=listToJson(list);
 ```
 
 При написании метода `listToJson()` вам понадобятся объекты типа `GsonBuilder` и `Gson`. Для преобразования списка
 объектов в JSON, требуется определить тип этого спика:
 
 ```java
-Type listType = new TypeToken<List<T>>() {}.getType();
+Type listType=new TypeToken<List<T>>(){}.getType();
 ```
 
 Получить JSON из экземпляра класса `Gson` можно с помощтю метода `toJson()`, передав в качестве аргументов список
 сотрудников и тип списка:
 
 ```java
-String json = gson.toJson(list, listType);
+String json=gson.toJson(list,listType);
 ```
 
 Далее запишите полученный JSON в файл с помощью метода `writeString()`, который необходимо реализовать самостоятельно. В
@@ -127,12 +127,15 @@ String json = gson.toJson(list, listType);
 # Задача 2: XML - JSON парсер
 
 ## Описание
+
 В данной задаче вам предстоит произвести запись в файл JSON объекта, полученного из XML файла.
 
 Данную задачу выполняйте в рамках созданного в предыдущей задаче проекта.
 
 В качестве исходной информации создайте файл `data.xml` со следующим содержимым (поместите этот файл в корень проекта):
+
 ```xml
+
 <staff>
     <employee>
         <id>1</id>
@@ -150,13 +153,24 @@ String json = gson.toJson(list, listType);
     </employee>
 </staff>
 ```
-В резyльтате работы программы в корне проекта должен появиться файл `data2.json` с содержимым, аналогичным json-файлу из предыдущей задачи.
+
+В резyльтате работы программы в корне проекта должен появиться файл `data2.json` с содержимым, аналогичным json-файлу из
+предыдущей задачи.
 
 ## Реализация
-Для получения списка сотрудников из XML документа используйте метод `parseXML()`:
-```java
-List<Employee> list = parseXML("data.xml");
-```
-При реализации метода `parseXML()` вам необходимо получить экземпляр класса `Document` с использованием `DocumentBuilderFactory` и `DocumentBuilder` через метод `parse()`. Далее получите из объекта `Document` корневой узел `Node` с помощью метода `getDocumentElement()`. Из корневого узла извлеките список узлов `NodeList` с помощью метода `getChildNodes()`. Пройдитесь по списку узлов и получите из каждого из них `Element`. У элементов получите значения, с помощью которых создайте экземпляр класса `Employee`. Так как элементов может быть несколько, организуйте всю работу в цикле. Метод `parseXML()` должен возвращать список сотрудников. 
 
-С помощью ранее написанного метода `listToJson()` преобразуйте список в JSON и запишите его в файл c помощью метода `writeString()`.
+Для получения списка сотрудников из XML документа используйте метод `parseXML()`:
+
+```java
+List<Employee> list=parseXML("data.xml");
+```
+
+При реализации метода `parseXML()` вам необходимо получить экземпляр класса `Document` с
+использованием `DocumentBuilderFactory` и `DocumentBuilder` через метод `parse()`. Далее получите из объекта `Document`
+корневой узел `Node` с помощью метода `getDocumentElement()`. Из корневого узла извлеките список узлов `NodeList` с
+помощью метода `getChildNodes()`. Пройдитесь по списку узлов и получите из каждого из них `Element`. У элементов
+получите значения, с помощью которых создайте экземпляр класса `Employee`. Так как элементов может быть несколько,
+организуйте всю работу в цикле. Метод `parseXML()` должен возвращать список сотрудников.
+
+С помощью ранее написанного метода `listToJson()` преобразуйте список в JSON и запишите его в файл c помощью
+метода `writeString()`.

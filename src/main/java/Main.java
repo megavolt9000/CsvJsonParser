@@ -29,13 +29,11 @@ public class Main {
 
         List<Employee> list = parseCSV(columnMapping, "data.csv");
         String json = listToJson(list);
-        //String jsonFileName = "data.json";
         writeString(json, "data.json");
 
         List<Employee> list2 = parseXML("data.xml");
         String json2 = listToJson(list2);
-        String jsonFilename2 = "data2.json";
-        writeString(json2, jsonFilename2);
+        writeString(json2, "data2.json");
 
 
     }
